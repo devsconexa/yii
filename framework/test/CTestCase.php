@@ -40,6 +40,8 @@ if(!class_exists('PHPUnit_Runner_Version')) {
 	}
 }
 
+use \PHPUnit\Framework\TestCase;
+
 /**
  * CTestCase is the base class for all test case classes.
  *
@@ -47,6 +49,6 @@ if(!class_exists('PHPUnit_Runner_Version')) {
  * @package system.test
  * @since 1.1
  */
-abstract class CTestCase extends PHPUnit_Framework_TestCase
+abstract class CTestCase extends TestCase
 {
 }
