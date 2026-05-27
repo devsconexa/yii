@@ -8853,7 +8853,7 @@ class CDbConnection extends CApplicationComponent
 				}
 				else
 				{
-					Yii::log($e->getMessage(),CLogger::LEVEL_ERROR,'exception.CDbException');
+					Yii::trace($e->getMessage(),'exception.CDbException');
 					throw new CDbException('CDbConnection failed to open the DB connection.',(int)$e->getCode(),$e->errorInfo);
 				}
 			}
@@ -9619,7 +9619,7 @@ class CDbCommand extends CComponent
 			}
 			catch(Exception $e)
 			{
-				Yii::log('Error in preparing SQL: '.$this->getText(),CLogger::LEVEL_ERROR,'system.db.CDbCommand');
+				Yii::trace('Error in preparing SQL: '.$this->getText(),'system.db.CDbCommand');
 				$errorInfo=$e instanceof PDOException ? $e->errorInfo : null;
 				throw new CDbException(Yii::t('yii','CDbCommand failed to prepare the SQL statement: {error}',
 					array('{error}'=>$e->getMessage())),(int)$e->getCode(),$errorInfo);
@@ -9695,8 +9695,8 @@ class CDbCommand extends CComponent
 				Yii::endProfile('system.db.CDbCommand.execute('.$this->getText().$par.')','system.db.CDbCommand.execute');
 			$errorInfo=$e instanceof PDOException ? $e->errorInfo : null;
 			$message=$e->getMessage();
-			Yii::log(Yii::t('yii','CDbCommand::execute() failed: {error}. The SQL statement executed was: {sql}.',
-				array('{error}'=>$message, '{sql}'=>$this->getText().$par)),CLogger::LEVEL_ERROR,'system.db.CDbCommand');
+			Yii::trace(Yii::t('yii','CDbCommand::execute() failed: {error}. The SQL statement executed was: {sql}.',
+				array('{error}'=>$message, '{sql}'=>$this->getText().$par)),'system.db.CDbCommand');
 			if(YII_DEBUG)
 				$message.='. The SQL statement executed was: '.$this->getText().$par;
 			throw new CDbException(Yii::t('yii','CDbCommand failed to execute the SQL statement: {error}',
@@ -9782,8 +9782,8 @@ class CDbCommand extends CComponent
 				Yii::endProfile('system.db.CDbCommand.query('.$this->getText().$par.')','system.db.CDbCommand.query');
 			$errorInfo=$e instanceof PDOException ? $e->errorInfo : null;
 			$message=$e->getMessage();
-			Yii::log(Yii::t('yii','CDbCommand::{method}() failed: {error}. The SQL statement executed was: {sql}.',
-				array('{method}'=>$method, '{error}'=>$message, '{sql}'=>$this->getText().$par)),CLogger::LEVEL_ERROR,'system.db.CDbCommand');
+			Yii::trace(Yii::t('yii','CDbCommand::{method}() failed: {error}. The SQL statement executed was: {sql}.',
+				array('{method}'=>$method, '{error}'=>$message, '{sql}'=>$this->getText().$par)),'system.db.CDbCommand');
 			if(YII_DEBUG)
 				$message.='. The SQL statement executed was: '.$this->getText().$par;
 			throw new CDbException(Yii::t('yii','CDbCommand failed to execute the SQL statement: {error}',

@@ -401,7 +401,7 @@ class CDbConnection extends CApplicationComponent
 				}
 				else
 				{
-					Yii::log($e->getMessage(),CLogger::LEVEL_ERROR,'exception.CDbException');
+					Yii::trace($e->getMessage(),'exception.CDbException');
 					throw new CDbException('CDbConnection failed to open the DB connection.',(int)$e->getCode(),$e->errorInfo);
 				}
 			}
